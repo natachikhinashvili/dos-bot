@@ -1,8 +1,15 @@
 from scapy.all import TCP, IP, sr1, conf, Ether, ARP, srp, UDP
+import requests
 
 dstaddress = input('Destination address: ')
 flag = input('Flag: ')
 attackprotocol = input('Choose attack protocol: ')
+api = "https://api.cvesearch.com/search?q=" + flag
+
+res = requests.get(api)
+result = res.json()
+
+print("vulnerabilities associated with that flag: " + result)
 
 class DOS:
     def getIpAddresses(self, target_ip):
